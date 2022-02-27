@@ -93,11 +93,34 @@
             </div>
         </div>
 
+<div class="votes">
+    <img src="images/icon-plus.svg" alt="">
+    <div class="votes-count">${state.countAmyrobson}</div>
+    <img src="images/icon-minus.svg" alt="">
+</div>
+<div class="main-comment">
+    <div class="profile">
+        <div class="name-date">
+            <div class="name-pic">
+                <img class="avatar-img" src="${data.comments[1].replies[1].user.image.png} " alt="">
+                <h6 class="person">${data.comments[1].replies[1].user.username}</h6>
+                <p class="you"> you </p>
+            </div>
+            <p class="date">${data.comments[1].replies[1].createdAt}</p>
+        </div>
 
+        <span class="reply reply-comment"><button class="del-btn"> <img src="images/icon-delete.svg" alt="">
+                Delete</button> <img src="images/icon-reply.svg" alt=""> Reply</span>
+    </div>
+    <div class="comment-text">
+        <span class="mention">@${data.comments[1].replies[1].replyingTo}</span> ${data.comments[1].replies[1].content}
+    </div>
+
+</div>
         <!-- Add comment -->
         <div class="send-comment ">
             <img class="avatar-send" src="images/avatars/image-ramsesmiron.png" alt="">
-            <textarea name="comment" id="" cols="10" rows="3" placeholder="Add a comment"></textarea>
+            <textarea name="comment" id="replyMaxText" cols="10" rows="3" placeholder="Add a comment"></textarea>
             <div class="send">
                 <button class="send-btn">SEND</button>
             </div>

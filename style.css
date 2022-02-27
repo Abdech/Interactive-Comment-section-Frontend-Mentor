@@ -164,3 +164,6 @@ textarea[name="comment"]{
     background-color: transparent;
     margin: 1rem;
 }
+.reply-ram{
+    display: none;
+}
