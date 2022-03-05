@@ -18,9 +18,18 @@ let replyToAmyrobson = document.querySelector('#reply-to-amyrobson')
 let amyrobsonText = document.querySelector('#amyrobson-text')
 let replyRam = document.querySelector('.reply-ram')
 let newSec = document.querySelector('.new')
-let sendBtn = document.querySelector('.send-btn')
+let sendBtnMax = document.querySelector('.send-btn-max')
 let newMaxblagunReply = document.querySelector('.new-maxblagun')
+let confirmDel = document.querySelector('.delete-confirm')
+let delNo = document.querySelector('.no')
+let delYes = document.querySelector('.yes')
+let max = document.querySelector('#max')
+let ramSec = document.querySelector('#ram-sec')
+let ramTextReply = document.querySelector('#ram-text-reply')
+let newRamReply  = document.querySelector('.new-ram-reply')
 
+let sendComment = document.querySelector('.send-comment')
+let sendCommentMax = document.querySelector('.send-comment-max')
 
  let state = {
     countMablagun: 0,
@@ -28,13 +37,18 @@ let newMaxblagunReply = document.querySelector('.new-maxblagun')
 }
 
  function replyAmyrobson() {
-    currentUserComment.classList.toggle('current-user')  
+     currentUserComment.classList.toggle('current-user')  
+     let replyText = document.querySelector('#reply-textarea')
+     
+     replyText.focus()
 }
-sendBtn.addEventListener("click", () => {
-    
-    let replyMaxText = document.querySelector('#replyMaxText')
 
-        
+
+sendBtnMax.addEventListener("click", () => {
+
+    let replyMaxText = document.querySelector('#replyMaxText')
+    
+
     let newComment = document.createElement('div')
     newComment.classList.add("comment")
     let newVotes = document.createElement('div')
@@ -63,18 +77,29 @@ sendBtn.addEventListener("click", () => {
     dateText.innerHTML = "5 days ago"
     let userPic = document.createElement('img')
 
-     let delBtn = document.createElement('button')
+    let delBtn = document.createElement('div')
     delBtn.classList.add('del-btn')
+    delBtn.classList.add('cursor')
     delBtn.innerText = "Delete"
 
-    let replyImg = document.createElement('img')
-    replyImg.src = "images/icon-reply.svg"
+    let delIcon = document.createElement('img')
+    delIcon.src = "images/icon-delete.svg"
+
+    let editIcon = document.createElement('img')
+    editIcon.src = "images/icon-edit.svg"
 
     let span = document.createElement('span')
     span.classList.add('reply-comment')
+    span.classList.add('reply')
     span.classList.add('cursor')
-    span.textContent = 'Reply'
-    span.onClick= replyAmyrobson()
+    span.onClick= replyMaxblagun()
+
+    
+    let spanDel = document.createElement('span')
+
+    
+    let spanEdit = document.createElement('span')
+    spanEdit.textContent = "Edit"
     
     
     let you = document.createElement('p')
@@ -91,13 +116,24 @@ sendBtn.addEventListener("click", () => {
 
     let commentText = document.createElement("div")
     commentText.classList.add('comment-text')
-    commentText.innerHTML = ` <span class="mention" >@amyrobson </span> 
-    ${replyMaxText.value}`
+    commentText.innerHTML = `<span class="mention" >@amyrobson </span> ${replyMaxText.value}`  
+    if (replyMaxText.value == "") {
+        sendCommentMax.style.display = 'flex'
+        // sendComment.innerHTML = `Comment can't be empty`
+        alert("Reply Message can't be empty")
+        
+    } else {
+       
+        span.appendChild(spanDel)
+        span.appendChild(spanEdit)
 
-    span.appendChild(replyImg)
-    span.appendChild(delBtn)
-    newComment.appendChild(newVotes)
-    newVotes.appendChild(newImgPlus)
+        spanDel.appendChild(delIcon)
+        spanDel.appendChild(delBtn)
+
+        spanEdit.appendChild(editIcon)
+
+        newComment.appendChild(newVotes)
+        newVotes.appendChild(newImgPlus)
     newVotes.appendChild(newVoteCount)
     newVotes.appendChild(newImgMinus)
     newComment.appendChild(mainComment)
@@ -111,15 +147,28 @@ sendBtn.addEventListener("click", () => {
     namePic.appendChild(you)
     mainComment.appendChild(commentText)
     newMaxblagunReply.appendChild(newComment)
+    }
+    replyMaxText.value = ""
+    replyMaxText.focus()
+    mainComment.style.width = '100%'
+
+    // The delete confirmation
+    delBtn.addEventListener('click', (event) => {
+        confirmDel.style.display = "block"
+        
+        delNo.addEventListener('click', () => {
+            confirmDel.style.display = "none "
+        })
+        delYes.addEventListener('click', (e) => {
+            confirmDel.style.display = "none "
+            let commentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement
+            commentElement.remove()
+        })
+    })
+   
     
    
 })
-
-
-
-
-
-
 
 
 amyrobsonText.addEventListener('click', () => {
@@ -155,18 +204,29 @@ amyrobsonText.addEventListener('click', () => {
     dateText.innerHTML = "5 days ago"
     let userPic = document.createElement('img')
 
-     let delBtn = document.createElement('button')
+    let delBtn = document.createElement('div')
     delBtn.classList.add('del-btn')
+    delBtn.classList.add('cursor')
     delBtn.innerText = "Delete"
 
-    let replyImg = document.createElement('img')
-    replyImg.src = "images/icon-reply.svg"
+    let delIcon = document.createElement('img')
+    delIcon.src = "images/icon-delete.svg"
+
+    let editIcon = document.createElement('img')
+    editIcon.src = "images/icon-edit.svg"
 
     let span = document.createElement('span')
     span.classList.add('reply-comment')
+    span.classList.add('reply')
     span.classList.add('cursor')
-    span.textContent = 'Reply'
-    span.onClick= replyAmyrobson()
+    span.onClick= replyAmyrobson() 
+
+    
+    let spanDel = document.createElement('span')
+
+    
+    let spanEdit = document.createElement('span')
+    spanEdit.textContent = "Edit"
     
     
     let you = document.createElement('p')
@@ -184,11 +244,23 @@ amyrobsonText.addEventListener('click', () => {
     let commentText = document.createElement("div")
     commentText.classList.add('comment-text')
     commentText.innerHTML = `<span class="mention" >@amyrobson </span> ${replyText.value}`  
+    if (replyText.value == "") {
+        sendComment.style.display = 'flex'
+        // sendComment.innerHTML = `Comment can't be empty`
+        alert("Reply Message can't be empty")
+        
+    } else {
+       
+        span.appendChild(spanDel)
+        span.appendChild(spanEdit)
 
-    span.appendChild(replyImg)
-    span.appendChild(delBtn)
-    newComment.appendChild(newVotes)
-    newVotes.appendChild(newImgPlus)
+        spanDel.appendChild(delIcon)
+        spanDel.appendChild(delBtn)
+
+        spanEdit.appendChild(editIcon)
+
+        newComment.appendChild(newVotes)
+        newVotes.appendChild(newImgPlus)
     newVotes.appendChild(newVoteCount)
     newVotes.appendChild(newImgMinus)
     newComment.appendChild(mainComment)
@@ -202,19 +274,158 @@ amyrobsonText.addEventListener('click', () => {
     namePic.appendChild(you)
     mainComment.appendChild(commentText)
     newSec.appendChild(newComment)
-    
-   
-    
+    }
+    replyText.value = ""
+    replyText.value.focus
+    mainComment.style.width = '100%'
+
+    // The delete confirmation
+    delBtn.addEventListener('click', (event) => {
+        confirmDel.style.display = "block"
+        
+        delNo.addEventListener('click', () => {
+            confirmDel.style.display = "none "
+        })
+        delYes.addEventListener('click', (_e) => {
+            confirmDel.style.display = "none "
+            let commentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement
+            commentElement.remove()
+        })
+    })
     })
 
 function replyMaxblagun() {
+    sendCommentMax.classList.toggle('send-comment-max')
+    let replyMaxText = document.querySelector('#replyMaxText')
+    replyMaxText.focus()
     
 }
+
 function commentToRam(){
     replyRam.style.display = 'flex'
+    ramTextReply.focus()
+}
+  ramSec.addEventListener('click', () => {
+
+    let newComment = document.createElement('div')
+    newComment.classList.add("comment")
+    let newVotes = document.createElement('div')
+    newVotes.classList.add('votes')
+    let newVoteCount = document.createElement('div')
+    newVoteCount.classList.add('votes-count')
+    newVoteCount.innerHTML = 10;
+    let newImgPlus = document.createElement('img')
+    newImgPlus.classList.add('cursor')
+    newImgPlus.src = "images/icon-plus.svg"
+    let newImgMinus = document.createElement('img')
+    newImgMinus.src = 'images/icon-minus.svg'
+    newImgMinus.classList.add('cursor')
+
+    let mainComment = document.createElement('div')
+    mainComment.classList.add("main-comment")
+    let profile = document.createElement('div')
+    profile.classList.add("profile")
+    let nameDate = document.createElement('div')
+    nameDate.classList.add("name-date")
+    
+    let namePic = document.createElement('div')
+    namePic.classList.add("name-pic")
+    let dateText = document.createElement('p')
+    dateText.classList.add('date')
+    dateText.innerHTML = "5 days ago"
+    let userPic = document.createElement('img')
+
+    let delBtn = document.createElement('div')
+    delBtn.classList.add('del-btn')
+    delBtn.classList.add('cursor')
+    delBtn.innerText = "Delete"
+
+    let delIcon = document.createElement('img')
+    delIcon.src = "images/icon-delete.svg"
+
+    let editIcon = document.createElement('img')
+    editIcon.src = "images/icon-edit.svg"
+
+    let span = document.createElement('span')
+    span.classList.add('reply-comment')
+    span.classList.add('reply')
+    span.classList.add('cursor')
+    span.onClick= commentToRam()
 
     
-}
+    let spanDel = document.createElement('span')
+
+    
+    let spanEdit = document.createElement('span')
+    spanEdit.textContent = "Edit"
+    
+    
+    let you = document.createElement('p')
+    you.classList.add('you')
+    you.innerHTML = 'you'
+   
+   
+    userPic.src = "images/avatars/image-juliusomo.png"
+    userPic.classList.add('avatar-img')
+    let h6 = document.createElement('h6')
+    h6.classList.add('person')
+    h6.innerHTML = 'juliusomo'
+
+
+    let commentText = document.createElement("div")
+    commentText.classList.add('comment-text')
+    commentText.innerHTML = `<span class="mention" >@amyrobson </span> ${ramTextReply.value}`  
+    if (ramTextReply.value == "") {
+        replyRam.style.display = 'flex'
+        // sendComment.innerHTML = `Comment can't be empty`
+        alert("Reply Message can't be empty")
+        ramTextReply.focus()
+        
+    } else {
+        span.appendChild(spanDel)
+        span.appendChild(spanEdit)
+
+        spanDel.appendChild(delIcon)
+        spanDel.appendChild(delBtn)
+
+        spanEdit.appendChild(editIcon)
+
+        newComment.appendChild(newVotes)
+        newVotes.appendChild(newImgPlus)
+    newVotes.appendChild(newVoteCount)
+    newVotes.appendChild(newImgMinus)
+    newComment.appendChild(mainComment)
+    mainComment.appendChild(profile)
+    profile.appendChild(nameDate)
+    profile.appendChild(span)
+    nameDate.appendChild(namePic)
+    nameDate.appendChild(dateText)
+    namePic.appendChild(userPic)
+    namePic.appendChild(h6)
+    namePic.appendChild(you)
+    mainComment.appendChild(commentText)
+
+    newRamReply.appendChild(newComment)
+    newRamReply.style.display = 'block'
+    }
+    mainComment.style.width = '100%'
+
+    // The delete confirmation
+    delBtn.addEventListener('click', (event) => {
+        confirmDel.style.display = "block"
+        
+        delNo.addEventListener('click', () => {
+            confirmDel.style.display = "none "
+        })
+        delYes.addEventListener('click', (e) => {
+            confirmDel.style.display = "none "
+            let commentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement
+            commentElement.remove()
+        })
+    })
+   
+    })
+
 function votesIncrement() {
     alert("is it only alert that works")
     state.countAmyrobson++
@@ -223,7 +434,8 @@ function votesIncrement() {
 function voteDecrement() {
     alert("is it only alert that works")
 }
-function deleteOwnComment() {
+function deleteMyComment(e) {
+    console.log(e)
     alert('hello delete')
 }
 
@@ -323,7 +535,15 @@ fetch('./data.json')
                         <p class="date">${data.comments[1].replies[1].createdAt}</p>
                     </div>
                     
-                    <span class="reply reply-comment"><button class="del-btn cursor" onClick= "deleteOwnComment()" >  <img src="images/icon-delete.svg" alt=""> Delete</button> <img src="images/icon-reply.svg" alt=""> Reply</span>
+                    <span class="reply reply-comment">
+                        <span >
+                        <img src="images/icon-delete.svg" alt="">
+                        <button class="del-btn cursor"  > Delete </button> 
+                        </span>
+                        <span>
+                        <img src="images/icon-edit.svg" alt=""> Edit
+                        </span>
+                    </span>
                 </div>
                 <div class="comment-text">
                  <span class="mention" >@${data.comments[1].replies[1].replyingTo}</span> ${data.comments[1].replies[1].content}

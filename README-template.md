@@ -5,7 +5,7 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 ## Table of contents
 
 - 
-  - [The challenge](#the-challenge)
+  - [Th](#the-challenge
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
@@ -19,7 +19,8 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 **Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
-
+The challenge is to build an interactive comment section that is responsive, which i tried to replicate the design given to me. I was able to replicate the desktop design easily but i didnt couldn't make the mobile exactly like it is in the design. I replicate the hover stages. 
+  So far, one can create, read and reply comment but the update and delete functionality is yet to be applied. 
 ### The challenge
 
 Users should be able to:

@@ -106,7 +106,7 @@ body{
 cursor: pointer;
 color: var(--Moderate-blue);
 }
-.send-comment{
+.send-comment, .send-comment-max{
     display: flex;
      background-color: var(--Very-light-gray);
      padding: 1.9rem;
@@ -114,7 +114,7 @@ color: var(--Moderate-blue);
     margin: 10px;
 }
 
-.send-btn{
+.send-btn, .send-btn-max{
     background-color: var(--Dark-blue);
     padding: 8px  1.3rem;
     border: none;
@@ -124,6 +124,9 @@ color: var(--Moderate-blue);
     margin: .3rem;
 
 }
+ .send-comment-max{
+     display: none;
+ }
 textarea[name="comment"]{
     flex: 3;
     margin: .3rem;
@@ -155,15 +158,63 @@ textarea[name="comment"]{
 }
 .current-user{
     display: none;
-    transition: all 9s linear;
-    transform: translate(-100px);
+    transition: all .5s linear;
 }
 .del-btn{
     border: none;
     color: red;
     background-color: transparent;
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 0;
 }
 .reply-ram{
     display: none;
+}
+
+.delete-confirm{
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    padding: 1.9rem;
+    margin: auto;
+    width: 30%;
+    border-radius: 1.1rem;
+    position: fixed;
+    top: 50%;
+    transform: translate(50%, -50%);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.new-ram-reply{
+    display: none;
+}
+.del-comment{
+    color: var(--Dark-blue);
+    padding: 0 0 1rem 0;
+}
+.del-para{
+    padding: 0 0 1rem 0 ;
+}
+
+.del-btns{
+    display: flex;
+    justify-content: space-around;
+}
+.no{
+    background-color: var(--Dark-blue);
+    padding:.5rem 1.1rem;
+    border: none;
+    color: var(--White);
+    border-radius: .5rem;
+}
+.yes{
+    background-color: red;
+    padding:.5rem 1.1rem;
+    border: none;
+    color: var(--White);
+    border-radius: .5rem;
+}
+.no:hover{
+    background-color: var(--Grayish-Blue);
+}
+.yes:hover{
+    background-color: var(--Pale-red);
 }
