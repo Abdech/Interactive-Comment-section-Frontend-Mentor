@@ -30,11 +30,24 @@ let newRamReply  = document.querySelector('.new-ram-reply')
 
 let sendComment = document.querySelector('.send-comment')
 let sendCommentMax = document.querySelector('.send-comment-max')
+let delMe = document.querySelector('.del-btn')
 
  let state = {
     countMablagun: 0,
     countAmyrobson: 0 
 }
+// delMe.addEventListener('click', (event) => {
+//         confirmDel.style.display = "block"
+        
+//         delNo.addEventListener('click', () => {
+//             confirmDel.style.display = "none "
+//         })
+//         delYes.addEventListener('click', (_e) => {
+//             confirmDel.style.display = "none "
+//             let commentElement = event.target.parentElement.parentElement.parentElement.parentElement.parentElement
+//             commentElement.remove()
+//         })
+//     })
 
  function replyAmyrobson() {
      currentUserComment.classList.toggle('current-user')  
@@ -254,7 +267,7 @@ amyrobsonText.addEventListener('click', () => {
         span.appendChild(spanDel)
         span.appendChild(spanEdit)
 
-        spanDel.appendChild(delIcon)
+        // spanDel.appendChild(delIcon)
         spanDel.appendChild(delBtn)
 
         spanEdit.appendChild(editIcon)
@@ -303,6 +316,7 @@ function replyMaxblagun() {
 
 function commentToRam(){
     replyRam.style.display = 'flex'
+    newRamReply.style.display = 'block'
     ramTextReply.focus()
 }
   ramSec.addEventListener('click', () => {
@@ -406,8 +420,9 @@ function commentToRam(){
     mainComment.appendChild(commentText)
 
     newRamReply.appendChild(newComment)
-    newRamReply.style.display = 'block'
-    }
+    
+      }
+      ramTextReply.value = ""
     mainComment.style.width = '100%'
 
     // The delete confirmation
@@ -450,7 +465,7 @@ fetch('./data.json')
          <div class="votes">
                 <img class="cursor" onClick="votesIncrement()" src="images/icon-plus.svg" alt="">
                 <div class="votes-count">${count}</div>
-                <img class="cursor" onClick="voteDecrement()" src="images/icon-minus.svg" alt="">
+                <img class="cursor minus" onClick="voteDecrement()" src="images/icon-minus.svg" alt="">
             </div>
             <div class="main-comment">
                 <div class="profile">
@@ -561,3 +576,6 @@ fetch('./data.json')
         // `
        
       })
+
+
+      
